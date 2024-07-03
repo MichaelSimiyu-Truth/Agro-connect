@@ -77,13 +77,13 @@ Farm App is a Django-based web application designed to facilitate interactions b
   ## Usage
   
 **Access the application:**
-Open your web browser and go to http://127.0.0.1:8000/.
+Open your web browser and go to ``` bash http://127.0.0.1:8000/.```
 
 **Login or Signup:**
 
-Create an account if you don't have one.
-Login with your credentials.
-Explore the features:
+- Create an account if you don't have one.
+- Login with your credentials.
+- Explore the features:
 
 **Farmers**
 Browse products.
@@ -96,7 +96,7 @@ Place orders.
 - Access the interactive analytics dashboard.
 
 **Admin**
-- #visit  http://127.0.0.1:8000/admin for admin dashboard
+- #visit  ```bash http://127.0.0.1:8000/admin ``` for admin dashboard
 - Manage users.
 - Manage product categories.
 
