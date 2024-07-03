@@ -1,4 +1,4 @@
-# **Farm App**
+# **FarmApp**
 
 ![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)
 
