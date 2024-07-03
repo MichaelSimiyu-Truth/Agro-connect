@@ -36,7 +36,7 @@ Farm App is a Django-based web application designed to facilitate interactions b
    ```bash
    https://github.com/MichaelSimiyu-Truth/Agro-connect.git
    ```
-2  **Navigate to project directory**
+2. **Navigate to project directory**
    ```bash
    cd agro-connect-main
    ```
@@ -86,9 +86,9 @@ Farm App is a Django-based web application designed to facilitate interactions b
 - Explore the features:
 
 **Farmers**
-Browse products.
-Add products to the cart.
-Place orders.
+- Browse products.
+- Add products to the cart.
+- Place orders.
 
 **Suppliers**
 - Manage product listings.
