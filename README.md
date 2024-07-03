@@ -10,6 +10,7 @@ Farm App is a Django-based web application designed to facilitate interactions b
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
+- [Project Structure](#project-structure)
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
@@ -29,6 +30,73 @@ Farm App is a Django-based web application designed to facilitate interactions b
 - [SQLite](https://www.sqlite.org/): A C-language library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine.
 - [Crispy Bootstrap](https://django-crispy-forms.readthedocs.io/en/latest/): A Django app that allows you to create beautiful forms using Bootstrap.
 - [Pillow](https://python-pillow.org/): A Python Imaging Library that adds image processing capabilities to your Python interpreter.
+
+
+## Project Structure
+
+```plaintext
+agro-connect-main/
+├── manage.py
+├── db.sqlite3
+├── venv/
+├── requirements.txt
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   └── images/
+├── templates/
+│   ├── base.html
+│   ├── farmers/
+│   │   ├── index.html
+│   │   └── ...
+│   ├── suppliers/
+│   │   ├── index.html
+│   │   └── ...
+│   └── ...
+├── farmapp/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│   ├── asgi.py
+│   └── ...
+├── authentication/
+│   ├── migrations/
+│   ├── templates/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── views.py
+│   └── ...
+├── products/
+│   ├── migrations/
+│   ├── templates/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── views.py
+│   └── ...
+├── orders/
+│   ├── migrations/
+│   ├── templates/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── views.py
+│   └── ...
+└── analytics/
+    ├── migrations/
+    ├── templates/
+    ├── __init__.py
+    ├── admin.py
+    ├── apps.py
+    ├── models.py
+    ├── views.py
+    └── ...
+```
 
 ## Installation
 
