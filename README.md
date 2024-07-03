@@ -61,17 +61,44 @@ Farm App is a Django-based web application designed to facilitate interactions b
    ```bash
    python manage.py migrate
    ```
+       
    
 6. **Create Superuser**
    ```bash
    python manage.py createsuperuser
    ```
-7. **Run the development server:**
+        #Input username,email and password for the superuser
+   
+7. **Run the development server**
    ```bash
-  python manage.py runserver
+   python manage.py runserver
    ```
 
-## Usage
+  ## Usage
+  
+**Access the application:**
+Open your web browser and go to http://127.0.0.1:8000/.
+
+**Login or Signup:**
+
+Create an account if you don't have one.
+Login with your credentials.
+Explore the features:
+
+**Farmers:**
+Browse products.
+Add products to the cart.
+Place orders.
+
+**Suppliers:**
+Manage product listings.
+View order analytics.
+Access the interactive analytics dashboard.
+
+**Admin**
+    #visit  http://127.0.0.1:8000/admin for admin dashboard
+Manage users.
+Manage product categories.
 
 
 
