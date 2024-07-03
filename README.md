@@ -91,14 +91,14 @@ Add products to the cart.
 Place orders.
 
 **Suppliers**
--Manage product listings.
--View order analytics.
--Access the interactive analytics dashboard.
+- Manage product listings.
+- View order analytics.
+- Access the interactive analytics dashboard.
 
 **Admin**
--#visit  http://127.0.0.1:8000/admin for admin dashboard
--Manage users.
--Manage product categories.
+- #visit  http://127.0.0.1:8000/admin for admin dashboard
+- Manage users.
+- Manage product categories.
 
 
 
