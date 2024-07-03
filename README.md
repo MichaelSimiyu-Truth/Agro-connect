@@ -66,8 +66,8 @@ Farm App is a Django-based web application designed to facilitate interactions b
 6. **Create Superuser**
    ```bash
    python manage.py createsuperuser
-   ```
-        # Input username,email and password for the superuser(Admin)
+   ```# Input username,email and password for the superuser(Admin)
+        
    
 7. **Run the development server**
    ```bash
