@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'supplier_index' %}">Home</a></li>
+                <li><a href="{% url 'cart_view' %}">Cart</a></li>
+                <li><a href="{% url 'order_list_view' %}">Orders</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'supplier_signout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    
+        <h2>Your Orders</h2>
+        {% for order in orders %}
+            <p><a href="{% url 'order_detail_view' order.id %}">Order #{{ order.id }}</a> - {{ order.status }}</p>
+        {% endfor %}
+    
+
+  
+{% endblock %}
