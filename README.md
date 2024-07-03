@@ -1,5 +1,7 @@
 #Farmapp
+
 ![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)
+
 ##Overview
 Farming Inputs Online Trade Market
 Welcome to the Farming Inputs Online Trade Market! This project is a web-based platform for trading farming inputs, built using the Django framework. It aims to connect buyers and sellers of various farming supplies, providing a streamlined and efficient marketplace.
