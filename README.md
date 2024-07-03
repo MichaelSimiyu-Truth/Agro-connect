@@ -85,20 +85,20 @@ Create an account if you don't have one.
 Login with your credentials.
 Explore the features:
 
-**Farmers:**
+**Farmers**
 Browse products.
 Add products to the cart.
 Place orders.
 
-**Suppliers:**
-Manage product listings.
-View order analytics.
-Access the interactive analytics dashboard.
+**Suppliers**
+-Manage product listings.
+-View order analytics.
+-Access the interactive analytics dashboard.
 
 **Admin**
-    #visit  http://127.0.0.1:8000/admin for admin dashboard
-Manage users.
-Manage product categories.
+-#visit  http://127.0.0.1:8000/admin for admin dashboard
+-Manage users.
+-Manage product categories.
 
 
 
