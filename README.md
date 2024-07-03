@@ -35,34 +35,41 @@ Farm App is a Django-based web application designed to facilitate interactions b
 1. **Clone the repository**:
    ```bash
    https://github.com/MichaelSimiyu-Truth/Agro-connect.git
+   ```
+2  **Navigate to project directory**
+   ```bash
    cd agro-connect-main
    ```
    
-2. **Set up virtual environment**
+3. **Set up virtual environment**
   ```bash
    pip install virtualenv
+  ```
+   ```bash
    python -m virtualenv venv
+   ```
+   ```bash
    source venv/bin/activate  # On Windows, use `venv\Scripts\activate
    ```
 
-3. **Install required packages**
+4. **Install required packages**
    ```bash
    pip install -r requirements.txt
    ```
    
-4. **Apply migrations**
+5. **Apply migrations**
    ```bash
    python manage.py migrate
    ```
    
-5. **Create Superuser**
+6. **Create Superuser**
    ```bash
    python manage.py createsuperuser
    ```
-6. **Run the development server:**
-  ```bash
+7. **Run the development server:**
+   ```bash
   python manage.py runserver
-  ```
+   ```
 
 ## Usage
 
