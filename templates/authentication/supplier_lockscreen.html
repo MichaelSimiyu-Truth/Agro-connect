@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="supplier-lockscreen-modal" class="modal" style="display: flex;">
+        <div class="modal-content">
+            <h2>Session Locked</h2>
+            <form method="POST" action="{% url 'supplier_unlock_screen' %}">
+                {% csrf_token %}
+                <input type="password" name="password" placeholder="Enter password">
+                <button type="submit">Unlock</button>
+            </form>
+            <form method="POST" action="{% url 'signout' %}">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <!-- JavaScript to prevent back button navigation -->
+{% endblock %}

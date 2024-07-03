@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Welcome to Our App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Add Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://bootswatch.com/5/lumen/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .btn-role {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center bg-white p-5 rounded shadow">
+        <h3>Welcome to Our App</h3>
+        <p class="lead">Please select your role to continue:</p>
+        <a href="{% url 'signin' %}" class="btn btn-dark btn-role">I am a Farmer</a>
+        <a href="{% url 'supplier_signin' %}" class="btn btn-dark btn-role">I am a Supplier</a>
+    </div>
+
+    <!-- Add Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Farmer Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <!-- Add Bootstrap CSS for styling -->
+    <!--<link rel="stylesheet" href="https://bootswatch.com/5/lumen/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+        }
+        .sidebar {
+            min-width: 250px;
+            max-width: 250px;
+            background: #f8f9fa;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+        .nav-link.active {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .nav-link {
+            color: #343a40;
+        }
+        .nav-link:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <div class="sidebar">
+        <div>
+            <h3>Farmer Dashboard</h3>
+            <ul class="nav flex-column">
+               
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'order_list_view' %}">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cart_view' %}">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'checkout_view' %}">Checkout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'order_list_view' %}">Order List</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'lock_screen' %}">Lock Screen</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signout' %}">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="content">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+
+        <div class="text-center">
+            <h3>Welcome to our app</h3>
+            
+            {% if user.is_authenticated %}
+            <h4>Hello {{ user.first_name }}</h4>
+            <h5>You're successfully logged in</h5>
+
+            <div class="container mt-5">
+                <div class="row">
+                    {% for product in products %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                {% if product.images.exists %}
+                                    <img src="{{ product.images.first.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                                {% else %}
+                                    <img src="path/to/default/image.jpg" class="card-img-top" alt="{{ product.name }}">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ product.name }}</h5>
+                                    <p class="card-text">{{ product.description }}</p>
+                                    <p class="card-text">${{ product.price }}</p>
+                                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% else %}
+            <div class="container text-center bg-white p-5 rounded shadow">
+                <p class="lead">Please select your role to continue:</p>
+                <a href="{% url 'signin' %}" class="btn btn-dark">I am a Farmer</a>
+                <a href="{% url 'supplier_signin' %}" class="btn btn-dark">I am a Supplier</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+</html>
+-->

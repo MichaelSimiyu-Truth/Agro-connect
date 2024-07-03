@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Farmer Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Add Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://bootswatch.com/5/lumen/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+        }
+        .sidebar {
+            min-width: 250px;
+            max-width: 250px;
+            background: #343a40;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .sidebar h3 {
+            color: #fff;
+        }
+        .nav-link {
+            color: #adb5bd;
+        }
+        .nav-link.active,
+        .nav-link:hover {
+            color: #fff;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+        .profile-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .profile-container img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            margin-left: 10px;
+        }
+        .product-card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .product-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .card-title {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .card-text {
+            font-size: 1em;
+            color: #6c757d;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div>
+            <h3>Farmer Dashboard</h3>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'order_list_view' %}">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cart_view' %}">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'checkout_view' %}">Checkout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'order_list_view' %}">Order List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'edit_farmer' %}">Edit Profile</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'lock_screen' %}">Lock Screen</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="profile-container">
+            <h4>Hello {{ user.first_name }}</h4>
+            {% if user.profile.profile_picture %}
+                <img src="{{ user.profile.profile_picture.url }}" alt="{{ user.first_name }}">
+            {% else %}
+                <img src="{% static 'img/no_image_available.png' %}" alt="No Image Available">
+            {% endif %}
+        </div>
+
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+
+        <div class="text-center">
+            <h3>Welcome to our app</h3>
+            <h5>You're successfully logged in</h5>
+
+            <div class="container mt-5">
+                <div class="row">
+                    {% for product in products %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card product-card">
+                                {% if product.images.exists %}
+                                    <img src="{{ product.images.first.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                                {% else %}
+                                    <img src="{% static 'img/no_image_available.png' %}" class="card-img-top" alt="No Image Available">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ product.name }}</h5>
+                                    <p class="card-text">{{ product.description }}</p>
+                                    <p class="card-text">${{ product.price }}</p>
+                                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
