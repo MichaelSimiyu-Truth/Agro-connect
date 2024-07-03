@@ -1,10 +1,10 @@
-#Farmapp
+# **Farm App**
 
 ![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-##Overview
-Farming Inputs Online Trade Market
-Welcome to the Farming Inputs Online Trade Market! This project is a web-based platform for trading farming inputs, built using the Django framework. It aims to connect buyers and sellers of various farming supplies, providing a streamlined and efficient marketplace.
+## Overview
+
+Farm App is a Django-based web application designed to facilitate interactions between farmers and suppliers. The application includes functionalities such as user authentication, profile management, product management, order processing, and an interactive analytics dashboard. The app is tailored to provide separate dashboards for farmers and suppliers, allowing for streamlined management of personal information, products, and orders.
 
 Features
 User registration and authentication
