@@ -42,9 +42,9 @@ Farm App is a Django-based web application designed to facilitate interactions b
    ```
    
 3. **Set up virtual environment**
-  ```bash
+   ```bash
    pip install virtualenv
-  ```
+   ```
    ```bash
    python -m virtualenv venv
    ```
@@ -74,12 +74,12 @@ Farm App is a Django-based web application designed to facilitate interactions b
    python manage.py runserver
    ```
 
-  ## Usage
+## Usage
   
-**Access the application:**
-Open your web browser and go to ``` bash http://127.0.0.1:8000/.```
+**Access the application**
+- Open your web browser and go to ``` http://127.0.0.1:8000/.```
 
-**Login or Signup:**
+**Login or Signup**
 
 - Create an account if you don't have one.
 - Login with your credentials.
@@ -96,7 +96,7 @@ Place orders.
 - Access the interactive analytics dashboard.
 
 **Admin**
-- #visit  ```bash http://127.0.0.1:8000/admin ``` for admin dashboard
+- #visit  ``` http://127.0.0.1:8000/admin ``` for admin dashboard
 - Manage users.
 - Manage product categories.
 
