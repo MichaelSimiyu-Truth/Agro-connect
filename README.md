@@ -34,5 +34,5 @@ Farm App is a Django-based web application designed to facilitate interactions b
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/farm-app.git
-   cd farm-app
+   https://github.com/MichaelSimiyu-Truth/Agro-connect.git
+   cd farmapp
