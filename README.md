@@ -168,6 +168,9 @@ agro-connect-main/
 - Manage users.
 - Manage product categories.
 
+## LICENSE
+This project is licensed under the MIT License.
+
 
 
 
