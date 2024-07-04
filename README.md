@@ -100,7 +100,7 @@ agro-connect-main/
 
 ## Installation
 
-1. **Clone the repository on your cmd**:
+1. **Clone the repository**:
    ```bash
    https://github.com/MichaelSimiyu-Truth/Agro-connect.git
    ```
