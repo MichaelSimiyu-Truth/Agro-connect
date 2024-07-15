@@ -1,0 +1,216 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to your custom CSS file -->
+    <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+    <style>
+        /* Custom CSS for the checkout page */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #6c757d; /* Changed to gray */
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            margin: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        form button {
+            margin-top: 20px;
+        }
+
+        #card-element, #mpesa-element {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .payment-option img {
+            height: 30px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'supplier_index' %}">Home</a></li>
+                <li><a href="{% url 'cart_view' %}">Cart</a></li>
+                <li><a href="{% url 'order_list_view' %}">Orders</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'supplier_signout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Checkout</h2>
+        <form id="payment-form" method="post" action="{% url 'checkout_view' %}">
+            {% csrf_token %}
+            
+            <!-- Exclude user selection fields -->
+
+            <!-- Payment Method Selection -->
+            <div class="payment-option">
+                <input type="radio" id="stripe" name="payment_method" value="stripe" checked>
+                <label for="stripe">Pay with Stripe</label>
+                <img src="{% static 'images/stripe-logo.png' %}" alt="Stripe Logo">
+            </div>
+            <div id="stripe-element">
+                <div id="card-element">
+                    <!-- A Stripe Element will be inserted here. -->
+                </div>
+                <!-- Used to display form errors. -->
+                <div id="card-errors" role="alert"></div>
+            </div>
+
+            <div class="payment-option">
+                <input type="radio" id="mpesa" name="payment_method" value="mpesa">
+                <label for="mpesa">Pay with Mpesa</label>
+                <img src="{% static 'images/mpesa-logo.png' %}" alt="Mpesa Logo">
+            </div>
+            <div id="mpesa-element" style="display: none;">
+                <label for="phone_number">Phone Number</label>
+                <input type="text" id="phone_number" name="phone_number" placeholder="Enter Mpesa phone number">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Place Order</button>
+        </form>
+    </main>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        var stripe = Stripe('{{ stripe_public_key }}');
+        var elements = stripe.elements();
+        
+        // Custom styling can be passed to options when creating an Element.
+        var style = {
+            base: {
+                color: '#32325d',
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSmoothing: 'antialiased',
+                fontSize: '16px',
+                '::placeholder': {
+                    color: '#aab7c4'
+                }
+            },
+            invalid: {
+                color: '#fa755a',
+                iconColor: '#fa755a'
+            }
+        };
+
+        // Create an instance of the card Element.
+        var card = elements.create('card', {style: style});
+
+        // Add an instance of the card Element into the `card-element` <div>.
+        card.mount('#card-element');
+
+        // Handle real-time validation errors from the card Element.
+        card.on('change', function(event) {
+            var displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+
+        // Handle form submission.
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var selectedPaymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+
+            if (selectedPaymentMethod === 'stripe') {
+                stripe.createToken(card).then(function(result) {
+                    if (result.error) {
+                        // Inform the user if there was an error.
+                        var errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = result.error.message;
+                    } else {
+                        // Send the token to your server.
+                        stripeTokenHandler(result.token);
+                    }
+                });
+            } else if (selectedPaymentMethod === 'mpesa') {
+                // Handle Mpesa form submission
+                form.submit();
+            }
+        });
+
+        // Submit the form with the token ID.
+        function stripeTokenHandler(token) {
+            var form = document.getElementById('payment-form');
+            var hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'stripeToken');
+            hiddenInput.setAttribute('value', token.id);
+            form.appendChild(hiddenInput);
+
+            // Submit the form
+            form.submit();
+        }
+
+        // Toggle payment fields based on selected method
+        document.querySelectorAll('input[name="payment_method"]').forEach(function(element) {
+            element.addEventListener('change', function(event) {
+                if (event.target.value === 'stripe') {
+                    document.getElementById('stripe-element').style.display = 'block';
+                    document.getElementById('mpesa-element').style.display = 'none';
+                } else if (event.target.value === 'mpesa') {
+                    document.getElementById('stripe-element').style.display = 'none';
+                    document.getElementById('mpesa-element').style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
